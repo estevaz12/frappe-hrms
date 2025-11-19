@@ -1,4 +1,9 @@
 version: "3.8" # Updated version
+
+configs:
+  init_script:
+    file: ./init.sh
+
 services:
   mariadb:
     image: mariadb:10.8
@@ -21,11 +26,15 @@ services:
     environment:
       - SHELL=/bin/bash
     working_dir: /home/frappe
-    volumes:
-      - .:/workspace
+    # volumes:
+    #   - .:/workspace
     ports:
       - 8081:8000
       - 9000:9000
+    configs:
+      - source: init_script
+        target: /workspace/init.sh
+        mode: 0755 # make sure it’s executable
 
 volumes:
   mariadb-data:
