@@ -2,7 +2,7 @@ version: "3.8" # Updated version
 
 configs:
   init_script:
-    file: ./init.sh
+    file: ./docker/init.sh
 
 services:
   mariadb:
